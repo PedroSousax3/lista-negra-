@@ -1,0 +1,33 @@
+header{
+    background-color: #141414;
+    position: fixed;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#menu-cima{
+    top: 0;
+    justify-content: center;
+}
+
+#menu-baixo{
+    bottom: 0;
+    justify-content: space-evenly;
+}
+
+div.menu > header#menu-cima > a > img {
+    height: 40px;
+}
+
+div.menu > header#menu-baixo > a {
+    color: white;
+    text-decoration: none;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+div.menu > header#menu-baixo > a:hover,  div.menu > header#menu-cima > a > img:hover{
+    opacity: .5;
+}

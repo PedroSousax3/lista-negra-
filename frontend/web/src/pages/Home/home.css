@@ -1,0 +1,37 @@
+main {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 0px 20px 00px 20px;
+    height: calc(100vh - 80px);
+}
+
+.titulo{
+    border-bottom: 2px solid rgb(128, 128, 128, .8);
+}
+
+.listar{
+    margin-bottom: 15px;
+}
+
+.listarnome{
+    width: 100px;
+    padding: 4.5px 0px;
+}
+
+section > form > fieldset > input {
+    height: 30px;
+    font-size: 14px;
+    width: calc(100% - 100px);
+    margin: 0px;
+}
+
+@media screen and (max-width: 425px)
+{
+    section > form > fieldset > input {
+        width: 100%;
+    }    
+
+    .listarnome{
+        margin-top: 10px;
+    }
+}
