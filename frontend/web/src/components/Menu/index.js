@@ -15,7 +15,7 @@ export default function Menu(){
                 </Link>
             </header>
             <header id = "menu-baixo">
-                <Link to = "/Consultar">
+                <Link to = "/">
                     CONSULTAR
                 </Link>
                 <Link to = "/Cadastrar">

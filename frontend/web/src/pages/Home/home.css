@@ -12,26 +12,3 @@ main {
 .listar{
     margin-bottom: 15px;
 }
-
-.listarnome{
-    width: 100px;
-    padding: 4.5px 0px;
-}
-
-section > form > fieldset > input {
-    height: 30px;
-    font-size: 14px;
-    width: calc(100% - 100px);
-    margin: 0px;
-}
-
-@media screen and (max-width: 425px)
-{
-    section > form > fieldset > input {
-        width: 100%;
-    }    
-
-    .listarnome{
-        margin-top: 10px;
-    }
-}

@@ -9,7 +9,8 @@ import './inserir.css'
 import ListaNegraApi from '../../services/ListaNegraApi'
 const funcaoApi =  new ListaNegraApi();
 
-export default function Insrir(){
+export default function Alterar(){
+    
     const [nome, setNome] = useState("");
     const [motivo, setMotivo] = useState("");
     const [local, setLocal] = useState("");
@@ -17,24 +18,24 @@ export default function Insrir(){
 
     const [registro, setRegistro] = useState([]);
 
-    const clickCadastro = async (novo ) => {
-        const result = await funcaoApi.cadastrar({
+    const clickAlterar = async (novo ) => {
+        const result = await funcaoApi.Alterar({
             nome: nome,
             motivo: motivo,
             local: local,
             inclusao: inclusao
         });
-
-        toast.success("Pessoa foi cadastrada com sucesso!!!");
         
         setRegistro(...[result]);
+
+        toast.success("Pessoa foi alterada com sucesso!!!");
     } 
 
     return (
         <div className = "inserir">
             <Menu />
             <main>
-                <h1>Cadastrar Lista Negra</h1>
+                <h1>Alterar Lista Negra</h1>
                 <div className = "form">
                     <label>Nome:</label>
                     <input type = "text" 
@@ -63,7 +64,7 @@ export default function Insrir(){
                        onChange = {x => setInclusao(x.target.value)} 
                     />
 
-                    <button id = "inserir" onClick = {clickCadastro}>Inserir</button>
+                    <button id = "inserir" onClick = {clickAlterar}>Inserir</button>
                 </div>
             </main>
 

@@ -42,11 +42,11 @@ namespace backend.DataBase
         {
             Models.TbLista atual = bd.TbLista.FirstOrDefault(x => x.IdLista == idlista);
 
-            if(!string.IsNullOrEmpty(novo.NmPessoa) && novo.NmPessoa != atual.NmPessoa)
+            if(novo.NmPessoa != atual.NmPessoa)
                 atual.NmPessoa = novo.NmPessoa;
-            if(!string.IsNullOrEmpty(novo.DsMotivo) && novo.DsMotivo != atual.DsMotivo)
+            if(novo.DsMotivo != atual.DsMotivo)
                 atual.DsMotivo = novo.DsMotivo;
-            if(!string.IsNullOrEmpty(novo.DsLocalConvivio) && novo.DsLocalConvivio != atual.DsLocalConvivio)
+            if(novo.DsLocalConvivio != atual.DsLocalConvivio)
                 atual.DsLocalConvivio = novo.DsLocalConvivio;
             if(novo.DtInclusao != atual.DtInclusao)
                 atual.DtInclusao = novo.DtInclusao;
