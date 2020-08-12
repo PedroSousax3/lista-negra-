@@ -73,7 +73,7 @@ namespace backend.Controllers
             }
         }
 
-        [HttpGet("ConsultarPorNome/nome")]
+        [HttpGet("ConsultarPorNome/{nome}")]
         public ActionResult<List<Models.Response.ListaResponse>> ConsultarPorNome(string nome)
         {
             try

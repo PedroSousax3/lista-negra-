@@ -10,8 +10,8 @@ export default function Rotas(){
         <BrowserRouter>
             <Switch>
                 <Route path = "/" exact = {true} component = {Home} />
-                <Route path = "Alterar" component = {Alterar} />
                 <Route path = "/Cadastrar" component = {Inserir} />
+                <Route path = "/Alterar" component = {Alterar} />
             </Switch>
         </BrowserRouter>
     );

@@ -1,10 +1,10 @@
+import './inserir.css';
+
 import React, { useState } from 'react';
 import Menu from '../../components/Menu/index.js';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import './inserir.css'
 
 import ListaNegraApi from '../../services/ListaNegraApi'
 const funcaoApi =  new ListaNegraApi();
@@ -15,10 +15,8 @@ export default function Insrir(){
     const [local, setLocal] = useState("");
     const [inclusao, setInclusao] = useState();
 
-    const [registro, setRegistro] = useState([]);
-
-    const clickCadastro = async (novo ) => {
-        const result = await funcaoApi.cadastrar({
+    const clickCadastro = async () => {
+        await funcaoApi.cadastrar({
             nome: nome,
             motivo: motivo,
             local: local,
@@ -26,8 +24,6 @@ export default function Insrir(){
         });
 
         toast.success("Pessoa foi cadastrada com sucesso!!!");
-        
-        setRegistro(...[result]);
     } 
 
     return (
@@ -60,7 +56,7 @@ export default function Insrir(){
                     <label>Data de Inclusão:</label>
                     <input type = "date" 
                           value = {inclusao} 
-                       onChange = {x => setInclusao(x.target.value)} 
+                       onChange = {x => setInclusao(x.target.value)}
                     />
 
                     <button id = "inserir" onClick = {clickCadastro}>Inserir</button>

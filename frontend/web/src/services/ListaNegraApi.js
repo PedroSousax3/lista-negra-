@@ -17,16 +17,16 @@ export default class ListaNegraApi {
     }
 
     async consultarPorNome(nome){
-        const result = await api.get(`/lista/ConsultarPorNome/${nome}`)
+        const result = await api.get(`/lista/ConsultarPorNome/${nome}`);
         return result.data;
     }
 
-    async Alterar(lista) {
-        const result = await api.put('/lista', lista);
+    async Alterar(idlista, lista) {
+        const result = await api.put(`/lista/${idlista}`, lista);
         return result.data;
     }
 
     async deletarPorId(id){
-        const result = await api.delete(`/lista/${id}`);    
+        await api.delete(`/lista/${id}`);    
     }
 }

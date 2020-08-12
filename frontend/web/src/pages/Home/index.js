@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import LoadingBar from 'react-top-loading-bar';
 
 import './home.css';
@@ -14,19 +15,15 @@ const funcaoApi = new ListaNegraApi();
 export default function Home(){
 
     const [nome, setNome] = useState("");
-    const [id, setId] = useState();
     const [registros, setRegistros] = useState([]); 
-    const [registro, setRegistro] = useState(); 
-
-    const consultarTodo = async () => {
-        ref.current.continuousStart();
-        const result = await funcaoApi.consultar();
-        setRegistros([...result]);
-        ref.current.complete();        
-    }
 
     const consultarNome = async (nome) => {
         const result = await funcaoApi.consultarPorNome(nome);
+        setRegistros([...result]);      
+    }
+
+    const consultarTodo = async () => {
+        const result = await funcaoApi.consultar();
         setRegistros([...result]);      
     }
 
@@ -34,6 +31,7 @@ export default function Home(){
         await funcaoApi.deletarPorId(id);
         consultarTodo();
         toast.success("Pessoa foi deletada com sucesso!!!");
+        consultarTodo();
     }
 
 
@@ -54,7 +52,11 @@ export default function Home(){
                 </button>
 
                 <div>
-                    <input placeholder = "Consultar por nome" type = "text" onChange = {x => setNome(x.target.value)} />
+                    <input type = "text" 
+                    placeholder = "Consultar por nome" 
+                       onChange = {x => setNome(x.target.value)} 
+                    />
+
                     <button onClick = {consultarNome(nome)}>
                         Consultar
                     </button>
@@ -82,6 +84,11 @@ export default function Home(){
                                     <button onClick = {() => deletar(x.id)}>
                                         Deletar
                                     </button>
+                                </td>
+                                <td>
+                                    <Link to = "/Alterar" id = {() => deletar(x.id.target.value)}>
+                                        alterar
+                                    </Link>
                                 </td>
                             </tr>
                         )}
