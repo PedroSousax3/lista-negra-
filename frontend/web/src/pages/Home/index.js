@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import LoadingBar from 'react-top-loading-bar';
 
 import './home.css';
 
@@ -17,7 +16,7 @@ export default function Home(){
     const [nome, setNome] = useState("");
     const [registros, setRegistros] = useState([]); 
 
-    const consultarNome = async (nome) => {
+    const consultarNome = async () => {
         const result = await funcaoApi.consultarPorNome(nome);
         setRegistros([...result]);      
     }
@@ -29,18 +28,12 @@ export default function Home(){
 
     const deletar = async (id) => {
         await funcaoApi.deletarPorId(id);
-        consultarTodo();
         toast.success("Pessoa foi deletada com sucesso!!!");
         consultarTodo();
     }
 
-
-    const ref = useRef(null);
-
     return (
         <div className = "home">
-            <LoadingBar color='#d61d2b' ref={ref} />
-
             <Menu />
             <main>
 
@@ -57,7 +50,7 @@ export default function Home(){
                        onChange = {x => setNome(x.target.value)} 
                     />
 
-                    <button onClick = {consultarNome(nome)}>
+                    <button onClick = {consultarNome}>
                         Consultar
                     </button>
                 </div>
@@ -86,7 +79,16 @@ export default function Home(){
                                     </button>
                                 </td>
                                 <td>
-                                    <Link to = "/Alterar" id = {() => deletar(x.id.target.value)}>
+                                    <Link to = {{
+                                        pathname: "/Alterar",
+                                        state: {
+                                            id: x.id,
+                                            nome: x.nome,
+                                            motivo: x.motivo,
+                                            local: x.local,
+                                            inclusao: x.inclusao
+                                        }
+                                    }}>
                                         alterar
                                     </Link>
                                 </td>

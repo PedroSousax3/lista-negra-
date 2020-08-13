@@ -1,12 +1,18 @@
-import './inserir.css';
-
+//Frameworks:
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+
+//Components:
 import Menu from '../../components/Menu/index.js';
 
-import { ToastContainer, toast } from 'react-toastify';
+//Styles:
+import './inserir.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+//Funções:
 import ListaNegraApi from '../../services/ListaNegraApi'
+
+//Instancias:
 const funcaoApi =  new ListaNegraApi();
 
 export default function Insrir(){
@@ -23,7 +29,7 @@ export default function Insrir(){
             inclusao: inclusao
         });
 
-        toast.success("Pessoa foi cadastrada com sucesso!!!");
+        toast.bind("Pessoa foi cadastrada com sucesso!!!");
     } 
 
     return (
@@ -47,11 +53,15 @@ export default function Insrir(){
                     />
 
                     <label>Local onde se conheceram:</label>
-                    <input type = "text" 
-                      minLength = "1" 
-                          value = {local} 
-                       onChange = {x => setLocal(x.target.value)} 
-                    />
+                    <select
+                        value = {local}
+                        onChange = {e => setLocal(e.target.value)}
+                    >
+                        <option value = "Casa">Casa</option>
+                        <option value = "Trabalho">Trabalho</option>
+                        <option value = "Escola">Escola</option>
+                        <option value = "Familia">Outro</option>
+                    </select>
 
                     <label>Data de Inclusão:</label>
                     <input type = "date" 

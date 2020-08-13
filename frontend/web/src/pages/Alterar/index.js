@@ -9,14 +9,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import ListaNegraApi from '../../services/ListaNegraApi'
 const funcaoApi =  new ListaNegraApi();
 
-export default function Alterar(){
+export default function Alterar(props){
 
-    const [id, setId] = useState();
-
-    const [nome, setNome] = useState("");
-    const [motivo, setMotivo] = useState("");
-    const [local, setLocal] = useState("");
-    const [inclusao, setInclusao] = useState();
+    const [id, setId] = useState(props.location.state.id);
+    const [nome, setNome] = useState(props.location.state.nome);
+    const [motivo, setMotivo] = useState(props.location.state.motivo);
+    const [local, setLocal] = useState(props.location.state.local);
+    const [inclusao, setInclusao] = useState(props.location.state.inclusao.substr(0, 10));
 
     const clickAlterar = async () => {
         await funcaoApi.Alterar(id, {
@@ -29,7 +28,6 @@ export default function Alterar(){
         toast.success("Pessoa foi alterada com sucesso!!!");
     }  
 
-
     return (
         <div className = "Alterar">
             <Menu />
@@ -37,13 +35,6 @@ export default function Alterar(){
             <main>
                 <h1>Alterar Lista Negra</h1>
                 <div className = "form">
-                    <label>Id:</label>
-                    <input type = "number"
-                            min = "1"
-                          value = {id} 
-                       onChange = {x => setId(Number(x.target.value))}
-                    />
-
                     <label>Nome:</label>
                     <input type = "text" 
                       minLength = "1" 
@@ -59,11 +50,15 @@ export default function Alterar(){
                     />
 
                     <label>Local onde se conheceram:</label>
-                    <input type = "text" 
-                      minLength = "1" 
-                          value = {local} 
-                       onChange = {x => setLocal(x.target.value)} 
-                    />
+                    <select
+                        value = {local} 
+                        onChange = {x => setLocal(x.target.value)} 
+                    >
+                        <option value = "Casa">Casa</option>
+                        <option value = "Trabalho">Trabalho</option>
+                        <option value = "Escola">Escola</option>
+                        <option value = "Familia">Outro</option>
+                    </select>
 
                     <label>Data de Inclusão:</label>
                     <input type = "date" 
@@ -71,11 +66,12 @@ export default function Alterar(){
                        onChange = {x => setInclusao(x.target.value)}
                     />
 
-                    <button id = "inserir" onClick = {clickAlterar}>Alterar</button>
+                    <button id = "alterar" onClick = {clickAlterar}>Alterar</button>
                 </div>
             </main>
 
             <ToastContainer />
+
         </div>
     );
 }
