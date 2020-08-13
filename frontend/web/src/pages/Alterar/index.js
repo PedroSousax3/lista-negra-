@@ -11,7 +11,7 @@ const funcaoApi =  new ListaNegraApi();
 
 export default function Alterar(props){
 
-    const [id, setId] = useState(props.location.state.id);
+    const [id] = useState(props.location.state.id);
     const [nome, setNome] = useState(props.location.state.nome);
     const [motivo, setMotivo] = useState(props.location.state.motivo);
     const [local, setLocal] = useState(props.location.state.local);

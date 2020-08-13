@@ -9,7 +9,7 @@ import Menu from '../../components/Menu/index.js';
 import './inserir.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-//Funções:
+//functions:
 import ListaNegraApi from '../../services/ListaNegraApi'
 
 //Instancias:
@@ -28,8 +28,7 @@ export default function Insrir(){
             local: local,
             inclusao: inclusao
         });
-
-        toast.bind("Pessoa foi cadastrada com sucesso!!!");
+        toast.success("Pessoa foi cadastrada com sucesso!!!");
     } 
 
     return (
@@ -54,7 +53,7 @@ export default function Insrir(){
 
                     <label>Local onde se conheceram:</label>
                     <select
-                        value = {local}
+                        value = {motivo}
                         onChange = {e => setLocal(e.target.value)}
                     >
                         <option value = "Casa">Casa</option>

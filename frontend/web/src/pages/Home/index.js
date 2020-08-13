@@ -1,29 +1,45 @@
-import React, { useState } from 'react';
+//Frameworks:
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-
+import LoadingBar from 'react-top-loading-bar'
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
+//Styles:
+import 'react-toastify/dist/ReactToastify.css';
 import './home.css';
 
+//Components:
 import Menu from '../../components/Menu/index';
 
+//functions:
 import ListaNegraApi from '../../services/ListaNegraApi.js';
+
+//Instancias:
 const funcaoApi = new ListaNegraApi();
 
 export default function Home(){
-
     const [nome, setNome] = useState("");
     const [registros, setRegistros] = useState([]); 
 
+    //loanding - Bar
+    const ref = useRef(null);
+
     const consultarNome = async () => {
+        ref.current.continuousStart()
+
         const result = await funcaoApi.consultarPorNome(nome);
-        setRegistros([...result]);      
+        setRegistros([...result]);  
+
+        ref.current.complete()  
     }
 
     const consultarTodo = async () => {
+        ref.current.continuousStart()
+
         const result = await funcaoApi.consultar();
-        setRegistros([...result]);      
+        setRegistros([...result]);
+        
+        ref.current.complete()  
     }
 
     const deletar = async (id) => {
@@ -34,6 +50,7 @@ export default function Home(){
 
     return (
         <div className = "home">
+            <LoadingBar color='#f11946' ref={ref} />
             <Menu />
             <main>
 
@@ -58,7 +75,6 @@ export default function Home(){
                 <table>
                     <thead>
                         <tr>
-                            <th>#id</th>
                             <th>Nome</th>
                             <th>Motivo</th>
                             <th>Local</th>
@@ -68,11 +84,10 @@ export default function Home(){
                     <tbody>
                         {registros.map(x => 
                             <tr key = {x.id}>
-                                <td>{x.id}</td>
                                 <td>{x.nome}</td>
                                 <td>{x.motivo}</td>
                                 <td>{x.local}</td>
-                                <td>{x.inclusao}</td>
+                                <td>{new Date(x.inclusao + "Z").toLocaleString()}</td>
                                 <td>
                                     <button onClick = {() => deletar(x.id)}>
                                         Deletar

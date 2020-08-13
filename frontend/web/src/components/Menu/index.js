@@ -21,9 +21,6 @@ export default function Menu(){
                 <Link to = "/Cadastrar">
                     CADASTRAR
                 </Link>
-                <Link to = "/Alterar">
-                    Alterar
-                </Link>
             </header>
         </div>
     );

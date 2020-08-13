@@ -8,6 +8,7 @@ export default class ListaNegraApi {
 
     async cadastrar(lista) {
         const result = await api.post('/lista', lista);
+        console.log(result);
         return result.data;
     }
 
