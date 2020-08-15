@@ -54,7 +54,7 @@ export default function Insrir(){
                     <label>Local onde se conheceram:</label>
                     <select
                         value = {motivo}
-                        onChange = {e => setLocal(e.target.value)}
+                        onChange = {x => setLocal(x.target.value)}
                     >
                         <option value = "Casa">Casa</option>
                         <option value = "Trabalho">Trabalho</option>

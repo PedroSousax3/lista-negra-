@@ -42,14 +42,15 @@ export default function Home(){
         ref.current.complete()  
     }
 
-    const deletar = async (id) => {
-        await funcaoApi.deletarPorId(id);
-        toast.success("Pessoa foi deletada com sucesso!!!");
+    const deletar = async (item) => {
+        await funcaoApi.deletarPorId(item.id);
+        toast.success(`${item.nome} foi deletada com sucesso!!!`);
         consultarTodo();
     }
 
     return (
         <div className = "home">
+
             <LoadingBar color='#f11946' ref={ref} />
             <Menu />
             <main>
@@ -89,7 +90,7 @@ export default function Home(){
                                 <td>{x.local}</td>
                                 <td>{new Date(x.inclusao + "Z").toLocaleString()}</td>
                                 <td>
-                                    <button onClick = {() => deletar(x.id)}>
+                                    <button onClick = {() => deletar(x)}>
                                         Deletar
                                     </button>
                                 </td>
