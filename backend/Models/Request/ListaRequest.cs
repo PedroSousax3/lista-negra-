@@ -9,5 +9,6 @@ namespace backend.Models.Request
         public string motivo { get; set; }
         public string local { get; set; }
         public DateTime inclusao { get; set; }
+        public IFormFile foto { get; set; }
     }
 }

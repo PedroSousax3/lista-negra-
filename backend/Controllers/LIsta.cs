@@ -10,6 +10,7 @@ namespace backend.Controllers
     public class ListaController : ControllerBase
     {
         Business.ListaRN funcaoRN = new Business.ListaRN();
+        Business.GerenciadorFoto GerirFoto = new Business.GerenciadorFoto();
         Utils.ConversorLista convert = new Utils.ConversorLista();
 
         [HttpPost]
@@ -18,8 +19,10 @@ namespace backend.Controllers
             try
             {
                 Models.TbLista novo = convert.Converter(lista);
+                novo.DsFoto = GerirFoto.GerarNome(lista.foto.FileName);
 
                 Models.TbLista adicionado = funcaoRN.InserirRN(novo);
+                GerirFoto.SalvarFoto(novo.DsFoto, lista.foto);
 
                 Models.Response.ListaResponse result = convert.Converter(adicionado);
 
@@ -87,6 +90,24 @@ namespace backend.Controllers
                 return result;
 
 
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(
+                    new Models.Response.Erro(404, ex.Message)
+                );
+            }
+        }
+
+        [HttpGet("ConsultarFoto")]
+        public ActionResult ConsultarFoto(string nome)
+        {
+            try
+            {
+                byte[] arquivo = GerirFoto.LerFoto(nome);
+
+                string extensao = GerirFoto.GerarContentType(nome);
+                return File(arquivo, extensao);
             }
             catch (System.Exception ex)
             {
