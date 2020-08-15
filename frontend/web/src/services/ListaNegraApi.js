@@ -7,8 +7,17 @@ const api = axios.create({
 export default class ListaNegraApi {
 
     async cadastrar(lista) {
-        const result = await api.post('/lista', lista);
-        console.log(result);
+        
+        let formData = new FormData();
+        formData.append('nome', lista.nome);
+        formData.append('motivo', lista.motivo);
+        formData.append('local', lista.local);
+        formData.append('inclusao', lista.inclusao);
+        formData.append('foto', lista.foto);
+
+        const result = await api.post('/lista', formData, {
+            headers: {'content-type': 'multipart/form-data'}
+        });
         return result.data;
     }
 
@@ -20,6 +29,11 @@ export default class ListaNegraApi {
     async consultarPorNome(nome){
         const result = await api.get(`/lista/ConsultarPorNome/${nome}`);
         return result.data;
+    }
+
+    consultarImagem(nome){
+        const result = api.defaults.baseURL + '/lista/ConsultarFoto/' + nome;
+        return result;
     }
 
     async Alterar(idlista, lista) {

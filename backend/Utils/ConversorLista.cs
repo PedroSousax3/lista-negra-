@@ -23,6 +23,7 @@ namespace backend.Utils
             novo.motivo = lista.DsMotivo;
             novo.local = lista.DsLocalConvivio;
             novo.inclusao = lista.DtInclusao;
+            novo.foto = lista.DsFoto;
 
             return novo;
         }

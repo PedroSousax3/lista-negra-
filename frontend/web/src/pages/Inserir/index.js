@@ -19,14 +19,16 @@ export default function Insrir(){
     const [nome, setNome] = useState("");
     const [motivo, setMotivo] = useState("");
     const [local, setLocal] = useState("");
-    const [inclusao, setInclusao] = useState();
+    const [inclusao, setInclusao] = useState("");
+    const [foto, setFoto] = useState();
 
     const clickCadastro = async () => {
         await funcaoApi.cadastrar({
-            nome: nome,
-            motivo: motivo,
-            local: local,
-            inclusao: inclusao
+            nome,
+            motivo,
+            local,
+            inclusao,
+            foto
         });
         toast.success("Pessoa foi cadastrada com sucesso!!!");
     } 
@@ -37,7 +39,7 @@ export default function Insrir(){
             <main>
                 <h1>Cadastrar Lista Negra</h1>
                 <div className = "form">
-                    <label>Nome:</label>
+                    <label>Nome</label>
                     <input type = "text" 
                       minLength = "1" 
                           value = {nome} 
@@ -53,14 +55,20 @@ export default function Insrir(){
 
                     <label>Local onde se conheceram:</label>
                     <select
-                        value = {motivo}
+                        value = {local}
                         onChange = {x => setLocal(x.target.value)}
                     >
+                        <option aria-disabled className = "desaparecer">Selecione uma opção</option>
                         <option value = "Casa">Casa</option>
                         <option value = "Trabalho">Trabalho</option>
                         <option value = "Escola">Escola</option>
                         <option value = "Familia">Outro</option>
                     </select>
+
+                    <label>Foto:</label>
+                    <input type = "file" 
+                       onChange = {x => setFoto(x.target.files[0])}
+                    />
 
                     <label>Data de Inclusão:</label>
                     <input type = "date" 

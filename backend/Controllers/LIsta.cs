@@ -14,7 +14,7 @@ namespace backend.Controllers
         Utils.ConversorLista convert = new Utils.ConversorLista();
 
         [HttpPost]
-        public ActionResult<Models.Response.ListaResponse> InserirListaNegra(Models.Request.ListaRequest lista)
+        public ActionResult<Models.Response.ListaResponse> InserirListaNegra([FromForm] Models.Request.ListaRequest lista)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace backend.Controllers
             }
         }
 
-        [HttpGet("ConsultarFoto")]
+        [HttpGet("  /{nome}")]
         public ActionResult ConsultarFoto(string nome)
         {
             try
