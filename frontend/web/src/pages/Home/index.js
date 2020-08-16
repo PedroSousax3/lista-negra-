@@ -69,8 +69,7 @@ export default function Home(){
                     
                     <input type="text" 
                       className="form-control" 
-                    placeholder="Recipient's username" 
-                     aria-label="Recipient's username" 
+                    placeholder="Pesquisar por nome" 
                aria-describedby="button-addon2"
                       onChange = {x => setNome(x.target.value)}  
                     />
@@ -132,7 +131,7 @@ export default function Home(){
                 {registros.map(x => 
                     <div className="card">
                         <img className="card-img-top" src = {funcaoApi.consultarImagem(x.foto)} alt = "Perfil" />
-                        <div className="card-body" key = {x.i}>
+                        <div className="card-body" key = {x.id}>
                             <h5 className="card-title">{x.nome}</h5>
                                 <p className="card-text">Motivo: {x.motivo}</p>
                                 <p className="card-text">Onde se conheceram: {x.local}</p>

@@ -99,7 +99,7 @@ namespace backend.Controllers
             }
         }
 
-        [HttpGet("  /{nome}")]
+        [HttpGet("ConsultarFoto/{nome}")]
         public ActionResult ConsultarFoto(string nome)
         {
             try
@@ -146,7 +146,6 @@ namespace backend.Controllers
             try
             {
                 funcaoRN.RemoverBD(idlista);
-
                 return Ok();
             }
             catch (System.Exception ex)

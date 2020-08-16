@@ -6,9 +6,10 @@ create table tb_lista (
     nm_pessoa				varchar(150),
     ds_motivo				varchar(150),
     ds_local_convivio		varchar(80),
-    dt_inclusao				datetime
+    dt_inclusao				datetime,
+    ds_foto					varchar(200)
 );
 
-select * from tb_lista;
+select * from bd_lista.tb_lista;
 
 dotnet ef dbcontext scaffold "server=localhost;user id=root;password=45923617xx;database=bd_lista" Pomelo.EntityFrameworkCore.MySql -o Models --data-annotations --force
